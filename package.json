@@ -1,17 +1,35 @@
 {
   "name": "shooter-js",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack server --mode development --open --port 3000",
+    "watch": "webpack --watch"
+  },
   "repository": "git@github.com:jadx2/shooter-js.git",
   "author": "jadx2 <delmarjaim@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
     "babel-eslint": "10.x",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.0",
+    "css-loader": "^5.2.6",
     "eslint": "7.x",
     "eslint-config-airbnb-base": "14.x",
     "eslint-plugin-import": "2.x",
+    "style-loader": "^2.0.0",
     "stylelint": "13.x",
     "stylelint-config-standard": "21.x",
     "stylelint-csstree-validator": "1.x",
-    "stylelint-scss": "3.x"
+    "stylelint-scss": "3.x",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "phaser": "^3.55.2"
   }
 }
