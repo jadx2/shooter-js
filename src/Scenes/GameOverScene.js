@@ -1,16 +1,16 @@
 import Phaser from 'phaser';
 import ScrollingBackground from './Entities/ScrollingBackground';
 
-export default class TitleScene extends Phaser.Scene {
+export default class GameOverScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'Title' });
+    super({ key: 'GameOver' });
   }
 
   create() {
     this.title = this.add.text(
       this.game.config.width * 0.5,
       270,
-      'SPACE EAGLES',
+      'GAME OVER',
       {
         fontFamily: 'monospace',
         fontSize: 48,
@@ -24,35 +24,40 @@ export default class TitleScene extends Phaser.Scene {
       btnOver: this.sound.add('sndBtnOver'),
       btnDown: this.sound.add('sndBtnDown'),
     };
-    this.btnPlay = this.add.sprite(
+    this.btnRestart = this.add.sprite(
       this.game.config.width * 0.5,
       this.game.config.height * 0.45,
-      'sprBtnPlay',
+      'sprBtnRestart',
     );
-    this.btnPlay.setInteractive();
-    this.btnPlay.on(
+
+    this.btnRestart.setInteractive();
+
+    this.btnRestart.on(
       'pointerover',
       () => {
-        this.btnPlay.setTexture('sprBtnPlayHover');
+        this.btnRestart.setTexture('sprBtnRestartHover');
         this.sfx.btnOver.play();
       },
       this,
     );
-    this.btnPlay.on('pointerout', () => {
-      this.btnPlay.setTexture('sprBtnPlay');
+
+    this.btnRestart.on('pointerout', () => {
+      this.btnRestart.setTexture('sprBtnRestart');
     });
-    this.btnPlay.on(
+
+    this.btnRestart.on(
       'pointerdown',
       () => {
-        this.btnPlay.setTexture('sprBtnPlayDown');
+        this.btnRestart.setTexture('sprBtnRestartDown');
         this.sfx.btnDown.play();
       },
       this,
     );
-    this.btnPlay.on(
+
+    this.btnRestart.on(
       'pointerup',
       () => {
-        this.btnPlay.setTexture('sprBtnPlay');
+        this.btnRestart.setTexture('sprBtnRestart');
         this.scene.start('Game');
       },
       this,
@@ -86,7 +91,6 @@ export default class TitleScene extends Phaser.Scene {
     // this.btnLeaderboard.on('pointerup', () => {
     //   this.scene.start('SceneLeaderboard');
     // });
-
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {
       const keys = ['sprBg0', 'sprBg1'];

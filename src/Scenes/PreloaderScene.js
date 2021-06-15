@@ -26,7 +26,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
     const percentText = this.make.text({
       x: width * 0.5,
-      y: height * 0.5 + 15,
+      y: height * 0.5,
       text: '0%',
       style: {
         font: '18px monospace',
@@ -35,26 +35,11 @@ export default class PreloaderScene extends Phaser.Scene {
     });
     percentText.setOrigin(0.5);
 
-    const assetText = this.make.text({
-      x: width * 0.5,
-      y: height * 0.5 + 50,
-      text: '',
-      style: {
-        font: '18px monospace',
-        fill: '#ffffff',
-      },
-    });
-    assetText.setOrigin(0.5);
-
     this.load.on('progress', (value) => {
       percentText.setText(`${parseInt(value * 100, 10)} %`);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(150, 280, 300 * value, 30);
-    });
-
-    this.load.on('fileprogress', (file) => {
-      assetText.setText(`Loading asset: ${file.key}`);
     });
 
     this.load.on('complete', () => {
@@ -69,14 +54,101 @@ export default class PreloaderScene extends Phaser.Scene {
     );
 
     // Load Assets
+    this.load.image('sprBg0', './img/sprBg0.png');
+    this.load.image('sprBg1', './img/sprBg1.png');
+    this.load.image('sprBg2', './img/sprBg2.png');
+    this.load.image('sprBtnPlay', './img/sprBtnPlay.png');
+    this.load.image(
+      'sprBtnPlayHover',
+      './img/sprBtnPlayHover.png',
+    );
+    this.load.image(
+      'sprBtnPlayDown',
+      './img/sprBtnPlayDown.png',
+    );
+    this.load.image(
+      'sprBtnLeaderboard',
+      './img/sprBtnLeaderboard.png',
+    );
+    this.load.image(
+      'sprBtnLeaderboardHover',
+      './img/sprBtnLeaderboardHover.png',
+    );
+    this.load.image(
+      'sprBtnLeaderboardDown',
+      './img/sprBtnLeaderboardDown.png',
+    );
+    this.load.image(
+      'sprBtnRestart',
+      './img/sprBtnRestart.png',
+    );
+    this.load.image(
+      'sprBtnRestartHover',
+      './img/sprBtnRestartHover.png',
+    );
+    this.load.image(
+      'sprBtnRestartDown',
+      './img/sprBtnRestartDown.png',
+    );
+
+    this.load.audio(
+      'sndBtnOver',
+      './sounds/sndBtnOver.wav',
+    );
+    this.load.audio(
+      'sndBtnDown',
+      './sounds/sndBtnDown.wav',
+    );
+    this.load.spritesheet(
+      'sprExplosion',
+      './img/sprExplosion.png',
+      {
+        frameWidth: 180,
+        frameHeight: 180,
+      },
+    );
+    this.load.spritesheet(
+      'sprEnemy0',
+      './img/sprEnemy0.png',
+      {
+        frameWidth: 32,
+        frameHeight: 32,
+      },
+    );
+    this.load.image('sprEnemy1', './img/sprEnemy1.png');
+    this.load.spritesheet(
+      'sprEnemy2',
+      './img/sprEnemy2.png',
+      {
+        frameWidth: 32,
+        frameHeight: 32,
+      },
+    );
+    this.load.image(
+      'sprLaserEnemy0',
+      './img/sprLaserEnemy0.png',
+    );
+    this.load.image(
+      'sprLaserPlayer',
+      './img/sprLaserPlayer.png',
+    );
     this.load.spritesheet(
       'sprPlayer',
       './img/sprPlayer.png',
       {
-        frameWidth: 16,
-        frameHeight: 16,
+        frameWidth: 32,
+        frameHeight: 32,
       },
     );
+    this.load.audio(
+      'sndExplode0',
+      './sounds/sndExplode0.wav',
+    );
+    this.load.audio(
+      'sndExplode1',
+      './sounds/sndExplode1.wav',
+    );
+    this.load.audio('sndLaser', './sounds/sndLaser.wav');
   }
 
   init() {
@@ -86,7 +158,7 @@ export default class PreloaderScene extends Phaser.Scene {
   ready() {
     this.readyCount += 1;
     if (this.readyCount === 2) {
-      this.scene.start('Game');
+      this.scene.start('Title');
     }
   }
 }

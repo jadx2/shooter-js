@@ -1,10 +1,17 @@
 import Phaser from 'phaser';
 import Entity from './Entity';
+import PlayerLaser from './PlayerLaser';
 
 export default class Player extends Entity {
   constructor(scene, x, y, key) {
     super(scene, x, y, key, 'Player');
     this.setData('speed', 200);
+    this.setData('isShooting', false);
+    this.setData('timerShootDelay', 10);
+    this.setData(
+      'timerShootTick',
+      this.getData('timerShootDelay') - 1,
+    );
     this.play('sprPlayer');
   }
 
@@ -37,5 +44,37 @@ export default class Player extends Entity {
       0,
       this.scene.game.config.height,
     );
+    if (this.getData('isShooting')) {
+      if (
+        this.getData('timerShootTick')
+        < this.getData('timerShootDelay')
+      ) {
+        this.setData(
+          'timerShootTick',
+          this.getData('timerShootTick') + 1,
+        );
+      } else {
+        const laser = new PlayerLaser(
+          this.scene,
+          this.x,
+          this.y,
+        );
+        this.scene.playerLasers.add(laser);
+
+        this.scene.sfx.laser.play();
+        this.setData('timerShootTick', 0);
+      }
+    }
+  }
+
+  onDestroy() {
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback() {
+        this.scene.scene.start('GameOver');
+      },
+      callbackScope: this,
+      loop: false,
+    });
   }
 }
