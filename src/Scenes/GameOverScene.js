@@ -1,12 +1,21 @@
 import Phaser from 'phaser';
 import ScrollingBackground from './Entities/ScrollingBackground';
+import setScore from './api/setScore';
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
     super({ key: 'GameOver' });
   }
 
+  init(data) {
+    this.score = data.score;
+  }
+
   create() {
+    this.add.text(16, 16, `Score: ${this.score}`, {
+      fontSize: '24px',
+      fill: '#fff',
+    });
     this.title = this.add.text(
       this.game.config.width * 0.5,
       270,
@@ -24,9 +33,55 @@ export default class GameOverScene extends Phaser.Scene {
       btnOver: this.sound.add('sndBtnOver'),
       btnDown: this.sound.add('sndBtnDown'),
     };
-    this.btnRestart = this.add.sprite(
+    const input = document.createElement('input');
+    input.id = 'input';
+    input.type = 'text';
+    input.autocomplete = 'off';
+    input.placeholder = 'Enter your name';
+    this.add.dom(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.4,
+      input,
+    );
+
+    this.btnSaveScore = this.add.sprite(
       this.game.config.width * 0.5,
       this.game.config.height * 0.45,
+      'sprBtnSave',
+    );
+    this.btnSaveScore.setInteractive();
+
+    this.btnSaveScore.on(
+      'pointerover',
+      () => {
+        this.btnSaveScore.setTexture('sprBtnSaveHover');
+        this.sfx.btnOver.play();
+      },
+      this,
+    );
+
+    this.btnSaveScore.on('pointerout', () => {
+      this.btnSaveScore.setTexture('sprBtnSave');
+    });
+    this.btnSaveScore.on(
+      'pointerdown',
+      () => {
+        this.btnSaveScore.setTexture('sprBtnSaveDown');
+        this.sfx.btnDown.play();
+      },
+      this,
+    );
+    this.btnSaveScore.on('pointerup', () => {
+      this.btnSaveScore.setTexture('sprBtnSave');
+      const player = document.querySelector('#input');
+      setScore(player.value, this.score).then(
+        this.scene.start('Title'),
+      );
+    });
+
+    this.btnRestart = this.add.sprite(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.5,
       'sprBtnRestart',
     );
 
@@ -65,7 +120,7 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.btnLeaderboard = this.add.sprite(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
+      this.game.config.height * 0.55,
       'sprBtnLeaderboard',
     );
     this.btnLeaderboard.setInteractive();

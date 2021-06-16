@@ -10,6 +10,10 @@ const config = {
   type: Phaser.WEBGL,
   width: 600,
   height: 800,
+  parent: 'divId',
+  dom: {
+    createContainer: true,
+  },
   backgroundColor: 'black',
   physics: {
     default: 'arcade',

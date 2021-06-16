@@ -8,3 +8,10 @@ body {
   background-repeat: no-repeat;
   overflow: hidden;
 }
+
+#input {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+}

@@ -70,6 +70,15 @@ export default class PreloaderScene extends Phaser.Scene {
       'sprBtnLeaderboard',
       './img/sprBtnLeaderboard.png',
     );
+    this.load.image('sprBtnSave', './img/sprBtnSave.png');
+    this.load.image(
+      'sprBtnSaveHover',
+      './img/sprBtnSaveHover.png',
+    );
+    this.load.image(
+      'sprBtnSaveDown',
+      './img/sprBtnSaveDown.png',
+    );
     this.load.image(
       'sprBtnLeaderboardHover',
       './img/sprBtnLeaderboardHover.png',
