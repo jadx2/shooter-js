@@ -14,4 +14,4 @@ const setScore = async (player, score) => {
   }
 };
 
-export default setScore;
+module.exports = setScore;

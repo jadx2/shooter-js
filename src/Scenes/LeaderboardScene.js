@@ -37,7 +37,9 @@ export default class LeaderboardScene extends Phaser.Scene {
           this.add.text(
             this.game.config.width * 0.36,
             value,
-            `${entry[i].user.toUpperCase()}..............${
+            `${i + 1}. ${entry[
+              i
+            ].user.toUpperCase()}..............${
               entry[i].score
             }`,
             {
