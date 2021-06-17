@@ -99,6 +99,15 @@ export default class PreloaderScene extends Phaser.Scene {
       'sprBtnRestartDown',
       './img/sprBtnRestartDown.png',
     );
+    this.load.image('sprBtnMenu', './img/sprBtnMenu.png');
+    this.load.image(
+      'sprBtnMenuHover',
+      './img/sprBtnMenuHover.png',
+    );
+    this.load.image(
+      'sprBtnMenuDown',
+      './img/sprBtnMenuDown.png',
+    );
 
     this.load.audio(
       'sndBtnOver',

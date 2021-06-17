@@ -83,9 +83,9 @@ export default class TitleScene extends Phaser.Scene {
       this.sfx.btnDown.play();
     });
 
-    // this.btnLeaderboard.on('pointerup', () => {
-    //   this.scene.start('SceneLeaderboard');
-    // });
+    this.btnLeaderboard.on('pointerup', () => {
+      this.scene.start('Leaderboard');
+    });
 
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {

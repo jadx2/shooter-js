@@ -73,8 +73,11 @@ export default class GameOverScene extends Phaser.Scene {
     );
     this.btnSaveScore.on('pointerup', () => {
       this.btnSaveScore.setTexture('sprBtnSave');
-      const player = document.querySelector('#input');
-      setScore(player.value, this.score).then(
+      const playerInput = document.querySelector('#input');
+      const player = playerInput.value.length === 0
+        ? 'X'
+        : playerInput.value;
+      setScore(player, this.score).then(
         this.scene.start('Title'),
       );
     });
@@ -118,34 +121,32 @@ export default class GameOverScene extends Phaser.Scene {
       this,
     );
 
-    this.btnLeaderboard = this.add.sprite(
+    this.btnMenu = this.add.sprite(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.55,
-      'sprBtnLeaderboard',
+      this.game.config.height * 0.5,
+      'sprBtnMenu',
     );
-    this.btnLeaderboard.setInteractive();
+    this.btnMenu.setInteractive();
 
-    this.btnLeaderboard.on('pointerover', () => {
-      this.btnLeaderboard.setTexture(
-        'sprBtnLeaderboardHover',
-      );
+    this.btnMenu.on('pointerover', () => {
+      this.btnMenu.setTexture('sprBtnMenuHover');
       this.sfx.btnOver.play();
     });
 
-    this.btnLeaderboard.on('pointerout', () => {
-      this.btnLeaderboard.setTexture('sprBtnLeaderboard');
+    this.btnMenu.on('pointerout', () => {
+      this.btnMenu.setTexture('sprBtnMenu');
     });
 
-    this.btnLeaderboard.on('pointerdown', () => {
-      this.btnLeaderboard.setTexture(
-        'sprBtnLeaderboardDown',
-      );
+    this.btnMenu.on('pointerdown', () => {
+      this.btnMenu.setTexture('sprBtnMenuDown');
       this.sfx.btnDown.play();
     });
 
-    // this.btnLeaderboard.on('pointerup', () => {
-    //   this.scene.start('SceneLeaderboard');
-    // });
+    this.btnMenu.on('pointerup', () => {
+      this.btnMenu.setTexture('sprBtnMenu');
+      this.scene.start('Title');
+    });
+
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {
       const keys = ['sprBg0', 'sprBg1'];

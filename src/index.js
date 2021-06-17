@@ -3,7 +3,8 @@ import BootScene from './Scenes/BootScene';
 import PreloaderScene from './Scenes/PreloaderScene';
 import TitleScene from './Scenes/TitleScene';
 import GameScene from './Scenes/GameScene';
-import GameOver from './Scenes/GameOverScene';
+import GameOverScene from './Scenes/GameOverScene';
+import LeaderboardScene from './Scenes/LeaderboardScene';
 import './assets/styles/styles.css';
 
 const config = {
@@ -25,8 +26,9 @@ const config = {
     BootScene,
     PreloaderScene,
     TitleScene,
+    LeaderboardScene,
     GameScene,
-    GameOver,
+    GameOverScene,
   ],
   pixelArt: true,
   roundPixels: true,
