@@ -2,9 +2,9 @@
 
 > Space shooter remembering that good old arcade games, written in vanilla Javascript and Phaser 3.
 
-## Screen Shot
-
 ![image](./screenshot.png)
+
+You can find the game design document [here](./gdd.md).
 
 ## Live Demo
 
