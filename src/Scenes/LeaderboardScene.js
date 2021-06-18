@@ -7,7 +7,6 @@ export default class LeaderboardScene extends Phaser.Scene {
     super({ key: 'Leaderboard' });
   }
 
-  // eslint-disable-next-line consistent-return
   create() {
     this.title = this.add.text(
       this.game.config.width * 0.5,
@@ -27,8 +26,8 @@ export default class LeaderboardScene extends Phaser.Scene {
       btnDown: this.sound.add('sndBtnDown'),
     };
 
-    try {
-      getScore().then((data) => {
+    getScore()
+      .then((data) => {
         const entry = data.result.sort(
           (a, b) => b.score - a.score,
         );
@@ -52,10 +51,8 @@ export default class LeaderboardScene extends Phaser.Scene {
           );
           value += 40;
         }
-      });
-    } catch (err) {
-      return err;
-    }
+      })
+      .catch((err) => err);
 
     this.btnMenu = this.add.sprite(
       this.game.config.width * 0.5,
