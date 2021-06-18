@@ -1,6 +1,6 @@
 # Introduction
 
-This project was set to be done in five days of work. During this time a global knowledge of Phaser 3 was acquired, also the use of assets and modifications of them through third-party software. Besides all that the implementation of DOM manipulation and information scavenging from the player inside the game itself through research.
+This is a five-day-work project which proved the understanding of the Phaser 3 framework. Use of assets and modifications of these was also implemented. Understanding the use of DOM inside the framework was crucial for the accomplishment of this project.
 
 # GamePlay
 
