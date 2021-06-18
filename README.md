@@ -85,7 +85,7 @@ Give a ⭐️ if you like this project!
 
 - Player and Enemies spaceships sprites: [Jull](https://opengameart.org/users/jull)
 - Lasers: [CruzR](https://opengameart.org/users/cruzr)
-- Explosions sprites: [Color Optimist] (https://opengameart.org/users/color-optimist)
+- Explosions sprites: [Color Optimist](https://opengameart.org/users/color-optimist)
 - Sound: [dklon](https://opengameart.org/users/dklon)
 
 ### ... And [Jared York](https://jaredyork.com/), for the original idea that inspired this journey!
